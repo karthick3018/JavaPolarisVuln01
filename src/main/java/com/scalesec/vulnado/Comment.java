@@ -23,6 +23,7 @@ public class Comment {
     Timestamp timestamp = new Timestamp(time);
     Comment comment = new Comment(UUID.randomUUID().toString(), username, body, timestamp);
     try {
+       System.out.println("Inside create method");
       if (comment.commit()) {
         return comment;
       } else {
@@ -34,6 +35,7 @@ public class Comment {
   }
 
   public static List<Comment> fetch_all() {
+    System.out.println("Inside fetch_all method");
     Statement stmt = null;
     List<Comment> comments = new ArrayList();
     try {
@@ -61,6 +63,7 @@ public class Comment {
 
   public static Boolean delete(String id) {
     try {
+      System.out.println("Inside delete method");
       String sql = "DELETE FROM comments where id = ?";
       Connection con = Postgres.connection();
       PreparedStatement pStatement = con.prepareStatement(sql);
